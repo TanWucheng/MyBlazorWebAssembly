@@ -46,7 +46,12 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         false
     );
-
-    const elems = document.querySelectorAll('.sidenav');
-    M.Sidenav.init(elems, {});
 });
+
+window.onload = () => {
+    const sideNavElems = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(sideNavElems, {});
+
+    const parallaxElems = document.querySelectorAll('.parallax');
+    M.Parallax.init(parallaxElems, {});
+};

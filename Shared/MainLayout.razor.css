@@ -76,8 +76,14 @@
     color: rgba(255, 255, 255, .9);
 }
 
-.parallax-image {
-    transform: translate3d(-50%, 240px, 0px);
+#parallaxImage {
+    transform: translate3d(-50%, 10em, 0);
     opacity: 1;
     width: 100%;
+}
+
+@media (max-width: 640.98px) {
+    #parallaxImage {
+        transform: translate3d(-50%, 0, 0);
+    }
 }
