@@ -1,14 +1,78 @@
 @inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
-    <div class="main">
-        <div class="top-row px-4" style="background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);">
+@* <style type="text/css"> *@
+@*     .breadcrumb-custom { *@
+@*         display: -ms-flexbox; *@
+@*         display: flex; *@
+@*         -ms-flex-wrap: wrap; *@
+@*         flex-wrap: wrap; *@
+@*         padding: .75rem 0; *@
+@*         margin-top: 0; *@
+@*         margin-bottom: 0; *@
+@*         list-style: none; *@
+@*         border-radius: .25rem; *@
+@*     } *@
+@* </style> *@
+@* *@
+@* <div class="page"> *@
+@*     <div class="sidebar"> *@
+@*         <NavMenu/> *@
+@*     </div> *@
+@*     <div class="main"> *@
+@*         <div class="top-row px-4" style="background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);"> *@
+@*             @{ *@
+@*                 if (NavigationManager.Uri == NavigationManager.BaseUri) *@
+@*                 { *@
+@*                     <nav class="mr-md-auto" aria-label="breadcrumb"> *@
+@*                         <ol class="breadcrumb-custom"> *@
+@*                             <li class="breadcrumb-item active" aria-current="page">Home</li> *@
+@*                         </ol> *@
+@*                     </nav> *@
+@*                 } *@
+@*                 else *@
+@*                 { *@
+@*                     <nav class="mr-md-auto" aria-label="breadcrumb"> *@
+@*                         <ol class="breadcrumb-custom"> *@
+@*                             <li class="breadcrumb-item"> *@
+@*                                 <a href="#" class="ml-0" style="color: #ff9800;">Home</a> *@
+@*                             </li> *@
+@*                             <li class="breadcrumb-item"> *@
+@*                                 <a href="#" class="ml-0" style="color: #ff9800;">Library</a> *@
+@*                             </li> *@
+@*                             <li class="breadcrumb-item active" aria-current="page">Data</li> *@
+@*                         </ol> *@
+@*                     </nav> *@
+@*                 } *@
+@*             } *@
+@*         </div> *@
+@*         <div class="content px-4"> *@
+@*             @Body *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+<NavMenu/>
+
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <br><br>
+            <h1 class="header center teal-text text-lighten-2">我的简易博客</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">基于ASP.NET Core Blazor WebAssembly构建</h5>
+            </div>
+            <div class="row center">
+                <a href="https://github.com/TanWucheng/MyBlazorWebAssembly" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">代码仓库</a>
+            </div>
+            <br><br>
+
         </div>
-        <div class="content px-4">
-            @Body
-        </div>
     </div>
+    <div class="parallax">
+        <img src="img/PRookery.jpg" alt="未能加载图片" style="transform: translate3d(-50%, 240px, 0px);opacity: 1;width: 100%;">
+    </div>
+</div>
+
+<div class="container">
+    @Body
 </div>
