@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-window.onload = () => {
+window.materializeComponentInit = () => {
     const sideNavElems = document.querySelectorAll('.sidenav');
     M.Sidenav.init(sideNavElems, {});
 

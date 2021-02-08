@@ -1,55 +1,6 @@
 @inherits LayoutComponentBase
 
-@* <style type="text/css"> *@
-@*     .breadcrumb-custom { *@
-@*         display: -ms-flexbox; *@
-@*         display: flex; *@
-@*         -ms-flex-wrap: wrap; *@
-@*         flex-wrap: wrap; *@
-@*         padding: .75rem 0; *@
-@*         margin-top: 0; *@
-@*         margin-bottom: 0; *@
-@*         list-style: none; *@
-@*         border-radius: .25rem; *@
-@*     } *@
-@* </style> *@
-@* *@
-@* <div class="page"> *@
-@*     <div class="sidebar"> *@
-@*         <NavMenu/> *@
-@*     </div> *@
-@*     <div class="main"> *@
-@*         <div class="top-row px-4" style="background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);"> *@
-@*             @{ *@
-@*                 if (NavigationManager.Uri == NavigationManager.BaseUri) *@
-@*                 { *@
-@*                     <nav class="mr-md-auto" aria-label="breadcrumb"> *@
-@*                         <ol class="breadcrumb-custom"> *@
-@*                             <li class="breadcrumb-item active" aria-current="page">Home</li> *@
-@*                         </ol> *@
-@*                     </nav> *@
-@*                 } *@
-@*                 else *@
-@*                 { *@
-@*                     <nav class="mr-md-auto" aria-label="breadcrumb"> *@
-@*                         <ol class="breadcrumb-custom"> *@
-@*                             <li class="breadcrumb-item"> *@
-@*                                 <a href="#" class="ml-0" style="color: #ff9800;">Home</a> *@
-@*                             </li> *@
-@*                             <li class="breadcrumb-item"> *@
-@*                                 <a href="#" class="ml-0" style="color: #ff9800;">Library</a> *@
-@*                             </li> *@
-@*                             <li class="breadcrumb-item active" aria-current="page">Data</li> *@
-@*                         </ol> *@
-@*                     </nav> *@
-@*                 } *@
-@*             } *@
-@*         </div> *@
-@*         <div class="content px-4"> *@
-@*             @Body *@
-@*         </div> *@
-@*     </div> *@
-@* </div> *@
+@inject IJSRuntime Js
 
 <NavMenu/>
 
@@ -76,3 +27,15 @@
 <div class="container">
     @Body
 </div>
+
+@code{
+
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Js.InvokeVoidAsync("materializeComponentInit");
+        }
+    }
+
+}
