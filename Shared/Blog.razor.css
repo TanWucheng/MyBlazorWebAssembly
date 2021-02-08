@@ -1,0 +1,28 @@
+.my-car-panel {
+    width: 100%;
+    overflow: scroll;
+    padding: 1rem 2rem;
+}
+
+.blog-head-box {
+    /* 设置元素两端对齐 */
+    text-align: justify;
+}
+
+/* 这里的伪元素一定要加上，不然span元素不能两端对齐 */
+.blog-head-box:after {
+    content: "";
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+}
+
+/*.blog-head-box span {*/
+/*    !* 设置盒子为行内块 *!*/
+/*    display: inline-block;*/
+/*}*/
+
+.span-box {
+    display: inline-flex;
+    align-items: center;
+}

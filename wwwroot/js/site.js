@@ -202,10 +202,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+/**
+ * materialize组件初始化
+ */
 window.materializeComponentInit = () => {
     const sideNavElems = document.querySelectorAll('.sidenav');
     M.Sidenav.init(sideNavElems, {});
 
     const parallaxElems = document.querySelectorAll('.parallax');
     M.Parallax.init(parallaxElems, {});
+};
+
+/**
+ * 渲染Markdown文件
+ * @param {string} file Markdown文件名称
+ * @param {string} elemId 元素Id
+ */
+window.renderMarkdown = (file, elemId) => {
+    const element = document.getElementById(elemId);
+    if (element) {
+        fetch(`Markdown/${file}`, {method: "GET"}).then(response => {
+            if (response.ok) {
+                response.text().then(responseText => {
+                    element.innerHTML = marked(responseText);
+                }).catch(error => {
+                    console.error(error);
+                });
+            }
+        }).catch(error => {
+            console.error(error);
+        });
+    }
 };

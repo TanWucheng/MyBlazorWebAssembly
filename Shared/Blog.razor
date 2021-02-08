@@ -1,0 +1,76 @@
+@using MyBlazorWebAssembly.Models
+@using MyBlazorWebAssembly.Extensions
+@using TimeZoneConverter
+<div class="card-panel my-car-panel z-depth-1">
+    <h5>
+        <a href="#">@BlogModel.Title</a>
+    </h5>
+    <div class="blog-head-box">
+        <span class="span-box">
+            <i class="tiny material-icons grey-text">event_note</i>
+            <label>@BlogModel.CreateDateTime.ToLongDateString()</label>&emsp;
+            <i class="tiny material-icons grey-text">local_offer</i>
+            <label>@BlogModel.BlogTag.GetRemark()</label>
+        </span>
+        <span class="span-box">
+            <i class="tiny material-icons grey-text">assignment</i>
+            <label>@BlogModel.Words</label>&emsp;
+            <i class="tiny material-icons grey-text">history</i>
+            <label>@_lastMpdifyDate</label>&emsp;
+            <i class="tiny material-icons grey-text">visibility</i>
+            <label>@BlogModel.ViewTimes</label>&emsp;
+            <i class="tiny material-icons grey-text">message</i>
+            <label>@BlogModel.CommentsNum</label>
+        </span>
+    </div>
+    <div>@BlogModel.Content</div>
+</div>
+
+@code{
+
+    [Parameter]
+    public BlogModel BlogModel { get; set; }
+
+    private string _lastMpdifyDate;
+
+    protected override Task OnParametersSetAsync()
+    {
+        DisplayLastModify();
+        return base.OnParametersSetAsync();
+    }
+
+    private void DisplayLastModify()
+    {
+        var timespan = DateTime.Now - BlogModel.LastModifyDateTime;
+        var minutes = (int) timespan.TotalMinutes;
+        if (minutes < 60)
+        {
+            _lastMpdifyDate = $"{minutes}分钟";
+        }
+        else if (minutes < 1440)
+        {
+            _lastMpdifyDate = $"{(int)timespan.TotalHours}小时";
+        }
+        else
+        {
+            var days = (int) timespan.TotalDays;
+            if (days < 7)
+            {
+                _lastMpdifyDate = $"{days}天";
+            }
+            else if (days < 30)
+            {
+                _lastMpdifyDate = $"{days / 7}周";
+            }
+            else if (days < 365)
+            {
+                _lastMpdifyDate = $"{days / 30}月";
+            }
+            else
+            {
+                _lastMpdifyDate = $"{days / 365}年";
+            }
+        }
+    }
+
+}
