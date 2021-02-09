@@ -1,5 +1,7 @@
 __Razor组件如何执行加载完毕回调？__
 
+> 参考[StackOverflow](https://stackoverflow.com/questions/61551404/in-blazor-how-to-call-a-function-at-page-load-event-name)
+
 ___1.重写Razor组件的OnInitializedAsync()方法___
 
 ``` c#

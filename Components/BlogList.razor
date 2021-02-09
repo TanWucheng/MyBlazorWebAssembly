@@ -1,0 +1,39 @@
+@using MyBlazorWebAssembly.Models
+@inject HttpClient HttpClient
+
+@{
+    if (_blogModels != null)
+    {
+        foreach (var blog in _blogModels)
+        {
+            <BlogItem BlogModel="@blog"/>
+        }
+    }
+}
+
+<div id="blogModal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>文章详情</h4>
+        <div id="blogContainer"></div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat"><i class="material-icons left">close</i>关闭</a>
+    </div>
+</div>
+
+@code {
+    private BlogModel[] _blogModels;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _blogModels = await HttpClient.GetFromJsonAsync<BlogModel[]>("sample-data/blogs.json");
+    }
+
+    // protected override async void OnAfterRender(bool firstRender)
+    // {
+    //     if (firstRender)
+    //     {
+    //         await Js.InvokeVoidAsync("renderMarkdown", "RazorPageOnLoadedHead.md", "razorPageOnLoaded");
+    //     }
+    // }
+}

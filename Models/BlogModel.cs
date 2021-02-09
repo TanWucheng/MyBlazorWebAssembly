@@ -10,7 +10,7 @@ namespace MyBlazorWebAssembly.Models
         /// <summary>
         /// 文章ID
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 文章标题

@@ -1,10 +1,10 @@
 @using MyBlazorWebAssembly.Models
 @using MyBlazorWebAssembly.Extensions
-@using TimeZoneConverter
+
 <div class="card-panel my-car-panel z-depth-1">
-    <h5>
-        <a href="#">@BlogModel.Title</a>
-    </h5>
+    <h6>
+        <a href="javascript:void(0);" onclick="showBlogModal('@_fileName','blogModal','blogContainer')">@BlogModel.Title</a>
+    </h6>
     <div class="blog-head-box">
         <span class="span-box">
             <i class="tiny material-icons grey-text">event_note</i>
@@ -31,10 +31,12 @@
     [Parameter]
     public BlogModel BlogModel { get; set; }
 
+    private string _fileName = string.Empty;
     private string _lastMpdifyDate;
 
     protected override Task OnParametersSetAsync()
     {
+        _fileName = $"{BlogModel.Id}.md";
         DisplayLastModify();
         return base.OnParametersSetAsync();
     }
@@ -49,7 +51,7 @@
         }
         else if (minutes < 1440)
         {
-            _lastMpdifyDate = $"{(int)timespan.TotalHours}小时";
+            _lastMpdifyDate = $"{(int) timespan.TotalHours}小时";
         }
         else
         {

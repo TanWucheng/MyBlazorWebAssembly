@@ -1,3 +1,7 @@
+/**
+ * 根据UA获取浏览器平台信息
+ * @constructor
+ */
 const BrowserType = () => {
     const ua = navigator.userAgent.toLowerCase();
     const testUa = regexp => regexp.test(ua);
@@ -149,6 +153,24 @@ const BrowserType = () => {
     });
 };
 
+/**
+ * 渲染Markdown文件
+ * @param {string} fileName Markdown文件名称
+ * @param {string} modalId modal ID
+ * @param {string} elemId 元素Id
+ */
+const showBlogModal = (fileName, modalId, elemId) => {
+    const modalElem = document.getElementById(modalId);
+    if (modalElem) {
+        const modal = M.Modal.getInstance(modalElem);
+        modal.open();
+        modalElem.style.maxHeight = "80%";
+        modalElem.style.height = "80%";
+        modalElem.style.width = "75%";
+        renderMarkdown(fileName, elemId);
+    }
+};
+
 document.addEventListener("DOMContentLoaded", function () {
     const browserType = BrowserType();
     if (browserType.platform === "desktop") {
@@ -211,17 +233,20 @@ window.materializeComponentInit = () => {
 
     const parallaxElems = document.querySelectorAll('.parallax');
     M.Parallax.init(parallaxElems, {});
+
+    const modalElems = document.querySelectorAll('.modal');
+    M.Modal.init(modalElems, {dismissible: false});
 };
 
 /**
  * 渲染Markdown文件
- * @param {string} file Markdown文件名称
+ * @param {string} fileName Markdown文件名称
  * @param {string} elemId 元素Id
  */
-window.renderMarkdown = (file, elemId) => {
+window.renderMarkdown = (fileName, elemId) => {
     const element = document.getElementById(elemId);
     if (element) {
-        fetch(`Markdown/${file}`, {method: "GET"}).then(response => {
+        fetch(`Markdown/${fileName}`, {method: "GET"}).then(response => {
             if (response.ok) {
                 response.text().then(responseText => {
                     element.innerHTML = marked(responseText);
