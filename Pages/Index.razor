@@ -2,4 +2,100 @@
 
 <h1>文章</h1>
 
+<div id="rateCalculateModel" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>输入数值计算房地产投资年回报率</h4>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="row">
+                        <div class="col s12">
+                            (
+                            <div class="input-field inline">
+                                <input id="incomeResult" type="number" class="validate" @onchange="@(args => OnChange(args, InputType.Income))"/>
+                                <label for="incomeResult">持续流入</label>
+                            </div>
+                            -
+                            <div class="input-field inline">
+                                <input id="expenditureResult" type="number" class="validate" @onchange="@(args => OnChange(args, InputType.Expenditure))"/>
+                                <label for="expenditureResult">持续流出</label>
+                            </div>
+                            )✖12÷
+                            <div class="input-field inline">
+                                <input id="costResult" type="number" class="validate" @onchange="@(args => OnChange(args, InputType.Cost))"/>
+                                <label for="costResult">成本</label>
+                            </div>
+                            ✖100%=
+                            <div class="input-field inline">
+                                <input id="rateResult" type="text" readonly class="validate" @bind-value="@Rate"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat"><i class="material-icons left">close</i>关闭</a>
+    </div>
+</div>
+
+
 <BlogList/>
+
+@code{
+
+    enum InputType
+    {
+        Income,
+        Expenditure,
+        Cost
+    }
+
+    private float Income { get; set; }
+    private float Expenditure { get; set; }
+    private float Cost { get; set; }
+    private string Rate { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        Income = 0;
+        Expenditure = 0;
+        Cost = 0;
+        Rate = string.Empty;
+        return Task.CompletedTask;
+    }
+
+    private Task OnChange(ChangeEventArgs args, InputType inputType)
+    {
+        var str = args.Value != null ? args.Value.ToString() : string.Empty;
+        var f = TryParseFloat(str);
+        switch (inputType)
+        {
+            case InputType.Income:
+                Income = f;
+                break;
+            case InputType.Expenditure:
+                Expenditure = f;
+                break;
+            case InputType.Cost:
+                Cost = f;
+                break;
+        }
+        Calculate();
+
+        return Task.CompletedTask;
+    }
+
+    private void Calculate()
+    {
+        Rate = $"{(Income - Expenditure) * 12 / Cost * 100}%";
+    }
+
+    private static float TryParseFloat(string source)
+    {
+        var b = float.TryParse(source, out var f);
+        return b ? f : 0;
+    }
+
+}

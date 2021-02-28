@@ -6,7 +6,7 @@
 }
 
 #parallaxImage {
-    transform: translate3d(-50%, 10em, 0);
+    transform: translate3d(-50%, 10rem, 0);
     opacity: 1;
     width: 100%;
 }
