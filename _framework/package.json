@@ -1,0 +1,22 @@
+{
+  "name": "myblazorwebassembly",
+  "version": "1.0.0",
+  "description": "Blazor WebAssembly Github Pages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanWucheng/MyBlazorWebAssembly.git"
+  },
+  "author": "tanwucheng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TanWucheng/MyBlazorWebAssembly/issues"
+  },
+  "homepage": "https://github.com/TanWucheng/MyBlazorWebAssembly#readme",
+  "dependencies": {
+    "editor.md": "^1.5.0"
+  }
+}

@@ -1,0 +1,59 @@
+/* /Components/BlogItem.razor.rz.scp.css */
+.my-car-panel[b-9ismb2n7ee] {
+    width: 100%;
+    overflow: scroll;
+    padding: 1rem 2rem;
+}
+
+.blog-head-box[b-9ismb2n7ee] {
+    /* 设置元素两端对齐 */
+    text-align: justify;
+}
+
+/* 这里的伪元素一定要加上，不然span元素不能两端对齐 */
+.blog-head-box[b-9ismb2n7ee]:after {
+    content: "";
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+}
+
+/*.blog-head-box span {*/
+/*    !* 设置盒子为行内块 *!*/
+/*    display: inline-block;*/
+/*}*/
+
+.span-box[b-9ismb2n7ee] {
+    display: inline-flex;
+    align-items: center;
+}
+/* /Components/BlogList.razor.rz.scp.css */
+.my-modal-style[b-qm9ehaugkp] {
+    top: 5%;
+    max-height: 90%;
+    height: 90%;
+    width: 75%;
+}
+/* /Shared/MainLayout.razor.rz.scp.css */
+.parallax-container[b-7mplwealic] {
+    min-height: 24em;
+    line-height: 0;
+    height: auto;
+    color: rgba(255, 255, 255, .9);
+}
+
+#parallaxImage[b-7mplwealic] {
+    transform: translate3d(-50%, 10rem, 0);
+    opacity: 1;
+    width: 100%;
+}
+
+@media (max-width: 640px) {
+    #parallaxImage[b-7mplwealic] {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+/* /Shared/NavMenu.razor.rz.scp.css */
+nav ul a[b-ypmwt9c4l9], nav .brand-logo[b-ypmwt9c4l9] {
+    color: #444;
+}
